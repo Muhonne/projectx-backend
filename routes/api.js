@@ -32,6 +32,15 @@ router.post("/add", cors(), (req, res) => {
   }
 });
 
+router.options("/delete/:id", cors()); // pass pre-flight
+router.delete("/delete/:id", cors(), (req, res) => {
+  Project.remove({
+    _id: req.params.id
+  }).then(() => {
+    res.status(200).send({ Deleted: req.params.id });
+  });
+});
+
 router.get("/technologies", cors(), (req, res) => {
   Technology.find({})
     .sort({ name: "ascending" })
