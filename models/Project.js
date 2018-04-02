@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+const Technology = require("./Technology");
+
 const ProjectSchema = new Schema({
   name: {
     type: String,
@@ -10,6 +12,7 @@ const ProjectSchema = new Schema({
     type: String,
     required: true
   },
+  technologies: [Technology],
   date: {
     type: Date,
     default: Date.now

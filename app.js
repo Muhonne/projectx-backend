@@ -6,14 +6,15 @@ const flash = require("connect-flash");
 const session = require("express-session");
 const path = require("path");
 const passport = require("passport");
-
 const mongoose = require("mongoose");
+
 
 const app = express();
 
 // ## GET ROUTES ##
 const projects = require("./routes/projects");
 const users = require("./routes/users");
+const api = require("./routes/api");
 
 const db = require("./config/database");
 // connect to mongoose
@@ -76,9 +77,10 @@ app.get("/about", (req, res) => {
   res.render("about");
 });
 
-// USER ROUTES
+// ROUTES
 app.use("/projects", projects);
 app.use("/users", users);
+app.use("/api", api);
 
 // PASSPORT CONFIG
 require("./config/passport")(passport);
