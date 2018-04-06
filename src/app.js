@@ -22,6 +22,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
 
+app.get("/", (req, res) => {
+  res.status(200).json({
+    message: "Im alive"
+  });
+});
+
 app.post("/register", (req, res) => {
   if (req.body.password.length < 4) {
     return res.status(400).json({
