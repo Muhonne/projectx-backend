@@ -1,14 +1,24 @@
 const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
-const cors = require("cors");
+const passport = require("passport");
+const bcrypt = require("bcryptjs");
 
-require("../models/Project");
 const Project = mongoose.model("projects");
-require("../models/Technology");
 const Technology = mongoose.model("technologies");
+const Users = mongoose.model("users");
 
-router.get("/", cors(), (req, res) => {
+const ROUTES = {
+  projects: `/projects`,
+  addProject: `/projects/add`,
+  deleteProject: `/projects/delete/:id`,
+  technologies: `/technologies`,
+  addTechnology: `/technologies/add`,
+  deleteTechnology: `/technologies/delete/:id`
+};
+
+router.use(passport.authenticate("jwt", { session: false }));
+router.get(ROUTES.projects, (req, res) => {
   Project.find({})
     .sort({ date: "descending" })
     .then(projects => {
@@ -16,8 +26,7 @@ router.get("/", cors(), (req, res) => {
     });
 });
 
-router.options("/add", cors()); // pass pre-flight
-router.post("/add", cors(), (req, res) => {
+router.post(ROUTES.addProject, (req, res) => {
   if (!req.body.name || !req.body.details) {
     res.status(422).send({ error: "Missing name or details" });
   } else {
@@ -32,8 +41,7 @@ router.post("/add", cors(), (req, res) => {
   }
 });
 
-router.options("/delete/:id", cors()); // pass pre-flight
-router.delete("/delete/:id", cors(), (req, res) => {
+router.delete(ROUTES.deleteProject, (req, res) => {
   Project.remove({
     _id: req.params.id
   }).then(() => {
@@ -41,15 +49,14 @@ router.delete("/delete/:id", cors(), (req, res) => {
   });
 });
 
-router.get("/technologies", cors(), (req, res) => {
+router.get(ROUTES.technologies, (req, res) => {
   Technology.find({})
     .sort({ name: "ascending" })
     .then(projects => {
       res.status(200).json(projects);
     });
 });
-router.options("/technologies/add", cors()); // pass pre-flight
-router.post("/technologies/add", cors(), (req, res) => {
+router.post(ROUTES.deleteTechnology, (req, res) => {
   if (!req.body.name) {
     res.status(422).send({ error: "Missing name" });
   } else {
