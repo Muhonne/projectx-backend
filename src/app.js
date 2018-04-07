@@ -21,7 +21,6 @@ const jwt = require("jsonwebtoken");
 const app = express();
 
 // ## MIDDLEWARE ##
-app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
 
