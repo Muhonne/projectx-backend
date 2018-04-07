@@ -32,7 +32,7 @@ app.get("/", (req, res) => {
 });
 
 app.post("/register", (req, res) => {
-  console.log("register request body", JSON.stringify(req.body, null, 2));
+  console.log("register request", JSON.stringify(req, null, 2));
   if (req.body.password.length < 4) {
     return res.status(400).json({
       message: "Password has to be atlest 4 chars",
@@ -82,7 +82,7 @@ app.post("/register", (req, res) => {
 });
 
 app.post("/login", (req, res, next) => {
-  console.log("login request body", JSON.stringify(req.body, null, 2));
+  console.log("login request", JSON.stringify(req, null, 2));
   passport.authenticate("local", { session: false }, (err, user, info) => {
     if (err || !user) {
       console.log(err);
