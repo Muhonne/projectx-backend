@@ -24,8 +24,8 @@ passport.use(
             if (!isMatch) {
               return cb(null, false, { message: "User or password wrong" });
             }
+            return cb(null, user, { message: "Logged in" });
           });
-          return cb(null, user, { message: "Logged in" });
         })
         .catch(err => cb(err));
     }
