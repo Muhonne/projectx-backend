@@ -32,6 +32,9 @@ app.get("/", (req, res) => {
 });
 
 app.post("/register", (req, res) => {
+  if (!req.body.email || !req.body.password || req.body.password2) {
+    return res.status(422).json({ message: "missing data from request" });
+  }
   if (req.body.password.length < 4) {
     return res.status(400).json({
       message: "Password has to be atlest 4 chars",
