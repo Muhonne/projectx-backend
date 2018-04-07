@@ -2,7 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const passport = require("passport");
 const cors = require("cors");
-
+const mongoose = require("mongoose");
 // ## DATABASE ##
 require("./config/database");
 
@@ -10,6 +10,7 @@ require("./config/database");
 require("./models/Project");
 require("./models/Technology");
 require("./models/User");
+const Users = mongoose.model("users");
 
 // ## AUTHENTICATION ##
 require("./config/jwt_passport");
