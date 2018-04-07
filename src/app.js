@@ -32,6 +32,7 @@ app.get("/", (req, res) => {
 
 app.post("/register", (req, res) => {
   if (!req.body.email || !req.body.password || req.body.password2) {
+    console.log(JSON.stringify(req.body));
     return res.status(422).json({ message: "missing data from request" });
   }
   if (req.body.password.length < 4) {
