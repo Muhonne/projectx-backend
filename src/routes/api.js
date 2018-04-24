@@ -17,7 +17,7 @@ const ROUTES = {
   deleteTechnology: `/technologies/delete/:id`
 };
 
-router.use(passport.authenticate("jwt", { session: false }));
+// router.use(passport.authenticate("jwt", { session: false }));
 router.get(ROUTES.projects, (req, res) => {
   Project.find({})
     .sort({ date: "descending" })
