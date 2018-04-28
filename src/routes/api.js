@@ -56,6 +56,17 @@ router.get(ROUTES.technologies, (req, res) => {
       res.status(200).json(projects);
     });
 });
+
+router.post(ROUTES.addTechnology, (req, res) => {
+  console.log("Add tech", req.body);
+  const newTech = new Technology({
+    name: req.body.name
+  });
+  newTech.save().then(tech => {
+    res.status(200).json(tech);
+  });
+});
+
 router.post(ROUTES.deleteTechnology, (req, res) => {
   if (!req.body.name) {
     res.status(422).send({ error: "Missing name" });
