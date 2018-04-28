@@ -12,4 +12,4 @@ const TechnologySchema = new Schema({
   }
 });
 
-mongoose.model("technologies", TechnologySchema);
+mongoose.model("technology", TechnologySchema);

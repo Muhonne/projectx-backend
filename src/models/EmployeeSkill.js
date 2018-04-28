@@ -3,20 +3,16 @@ const Schema = mongoose.Schema;
 
 const Technology = require("./Technology");
 
-const ProjectSchema = new Schema({
-  name: {
-    type: String,
+const EmployeeSkillSchema = new Schema({
+  level: {
+    type: Number,
     required: true
   },
-  details: {
-    type: String,
-    required: true
-  },
-  technologies: [Technology],
+  technology: Technology,
   date: {
     type: Date,
     default: Date.now
   }
 });
 
-mongoose.model("project", ProjectSchema);
+mongoose.model("employeeSkill", EmployeeSkillSchema);

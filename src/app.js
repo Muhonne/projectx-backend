@@ -12,6 +12,7 @@ require("./config/database");
 require("./models/Project");
 require("./models/Technology");
 require("./models/User");
+require("./models/Employee");
 const Users = mongoose.model("users");
 
 // ## AUTHENTICATION ##
