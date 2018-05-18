@@ -5,6 +5,8 @@ let mongoURI = constants.localMongo;
 if (process.env.NODE_ENV === "production") {
   mongoURI = constants.productionMongo;
 }
+
+constants.productionMongo();
 // connect to mongoose
 mongoose
   .connect(mongoURI)

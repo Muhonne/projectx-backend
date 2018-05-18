@@ -13,6 +13,7 @@ router.get("/", (req, res) => {
 });
 
 router.put("/", (req, res) => {
+  console.log("add employee", req.body);
   const newEmployee = new Employee({
     name: req.body.name,
     interests: req.body.interests,
