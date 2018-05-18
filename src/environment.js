@@ -12,7 +12,7 @@ module.exports = {
       })
       .then(response => console.log("response", response))
       .catch(err => {
-        console.log("error", err.data.message);
+        console.log("error", err);
         console.log("proces env", process.env);
       });
   }
