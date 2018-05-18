@@ -1,11 +1,18 @@
-# projectx
-projectx backend with Node, Express and Mongo
+# ProjectX
 
-* You'll need to install mongo locally or set up your own remote, put the url in environment.js
-* Then just start mongo
-* Start the app
+Idea was/is to make an internal tool for sharing knowledge about projects in a company. At the moment it's a very basic node+express+mongo backend.
 
-# Multiple remotes
-* my personal setup is in heroku where it push to publish
-* actual repo is in Soikeas github
-* see https://git-scm.com/book/en/v2/Git-Basics-Working-with-Remotes
+## Get started
+Use Yarn or npm, instructions with yarn
+* Install deps with `Yarn`
+* `yarn start` to run
+* You should have mongo running locally, set the url in `environment.js`
+* Authentication is off at the moment but the functionality is there, if you want to set it on
+     * uncomment line 6 in `api.js` - `// router.use(passport.authenticate("jwt", { session: false }));`
+
+## Implementation
+There's nothing fancy:
+* server setup in `app.js`
+* mongoose models in `models/`
+* routes in `routes/`
+* mongo and authentication setup in `config/`
